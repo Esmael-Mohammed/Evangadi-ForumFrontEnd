@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Home.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../../Api/axios";
+import axios from "../../API/axios";
 // react-redux
 import { connect } from "react-redux";
 // actions creation function
-import { storeUser } from "../../redux";
+import { storeUser } from "../../Utility/action";
 import { toast } from "react-toastify";
 import { FaUserTie } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
@@ -16,17 +16,19 @@ const Home = ({ user, storeUser }) => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
+  
+  console.log("token",token)
 
   const checkUserLogged = async () => {
     try {
-      const { data } = await axios.get("/user/checkUser", {
+      const { data } = await axios.get("/user/check", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       storeUser(data.userName);
       // console.log(data);
-      await fetchAllQuestions();
+       fetchAllQuestions();
     } catch (error) {
       console.error(error.response);
       toast.error("Please log in to your account first. ", {
@@ -37,12 +39,12 @@ const Home = ({ user, storeUser }) => {
 
   const fetchAllQuestions = async () => {
     try {
-      const { data } = await axios.get("/questions", {
+      const { data } = await axios.get("/question", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (data.length === 0) {
+      if (!data || data.length === 0) {
         setQuestions([]);
         toast.error("No question found ", {
           position: "top-center",
@@ -51,7 +53,7 @@ const Home = ({ user, storeUser }) => {
       setQuestions(data.reverse());
       // console.log(data);
     } catch (error) {
-      toast.error("Fetching question error ", {
+      toast.error(`Error: ${error.response?.data?.message || "Fetching question error"}`, {
         position: "top-center",
       });
     }

@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import classes from "./SignUp.module.css";
 import { useNavigate } from "react-router-dom";
-import axios from "../../Api/axios";
+import axios from "../../API/axios";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { toast } from "react-toastify";
 // react-redux
 import { connect } from "react-redux";
 // actions
-import { storeUser, userSignIn, userPassword } from "../../redux";
+import { storeUser, userSignIn, userPassword } from "../../Utility/action";
 
 const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
   const userNameDom = useRef();
@@ -37,7 +37,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
         navigate("/dashboard");
       }, 1300);
     } catch (error) {
-      toast.error("Something went wrong to signup, try again!", {
+      toast.error(error.data?.message|| "Signup failde", {
         position: "top-center",
       });
       navigate("/");

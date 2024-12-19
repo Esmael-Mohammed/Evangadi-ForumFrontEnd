@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "../../Api/axios";
+import axios from "../../API/axios";
 import classes from "./Answer.module.css";
 import { FaUserTie } from "react-icons/fa";
 // import { MdDelete } from "react-icons/md";
 // react-redux
 import { connect } from "react-redux";
 // actions creation function
-import { storeUser } from "../../redux";
+import { storeUser } from "../../Utility/action";
 import { toast } from "react-toastify";
 
 const Answer = ({ user, storeUser }) => {
@@ -23,7 +23,7 @@ const Answer = ({ user, storeUser }) => {
 
   const checkUserLogged = async () => {
     try {
-      const { data } = await axios.get("/user/checkUser", {
+      const { data } = await axios.get("/user/check", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

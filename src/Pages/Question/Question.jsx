@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import classes from "./Question.module.css";
-import axios from "../../Api/axios";
+import axios from "../../API/axios";
 // react-redux connection
 import { connect } from "react-redux";
 // actions creation function
-import { storeUser } from "../../redux";
+import { storeUser } from "../../Utility/action";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const Question = ({ storeUser }) => {
 
   const checkUserLogged = async () => {
     try {
-      const { data } = await axios.get("/user/checkUser", {
+      const { data } = await axios.get("/user/check", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ const Question = ({ storeUser }) => {
     e.preventDefault();
     try {
       await axios.post(
-        "/question",
+        "/questions",
         {
           title: titleDom.current.value,
           description: descDom.current.value,

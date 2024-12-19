@@ -2,13 +2,13 @@ import React from "react";
 import classes from "./Header.module.css";
 import logo from "../../assets/images/evangadi-logo.png";
 import { useNavigate } from "react-router-dom";
-import axios from "../../Api/axios";
+import axios from "../../API/axios";
 import { toast } from "react-toastify";
 
 // react-redux
 import { connect } from "react-redux";
 // actions function
-import { removeUser } from "../../redux";
+import { removeUser } from "../../Utility/action";
 
 const Header = ({ removeUser }) => {
   const token = localStorage.getItem("token");

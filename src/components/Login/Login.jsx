@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { storeUser, userPassword, userSignUp } from "../../redux";
+import { storeUser, userPassword, userSignUp } from "../../Utility/action";
 
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
-import axios from "../../Api/axios";
+import axios from "../../API/axios";
 import classes from "./Login.module.css";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
@@ -24,7 +24,7 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
   const checkUserLogged = async () => {
     try {
       // Makes a GET Request: This line sends a request to the server to check if the user is logged in. It includes the token in the request headers for authorization.
-      const { data } = await axios.get("/user/checkUser", {
+      const { data } = await axios.get("/user/check", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
