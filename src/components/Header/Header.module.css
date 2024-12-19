@@ -27,3 +27,15 @@
   border: none;
   border-radius: 5px;
 }
+@media screen and (max-width:480px) {
+  .header__title{
+    display: none;
+  }
+  .header__container img{
+    width: 100%;
+    
+  }
+  .header__container{
+    
+  }
+}

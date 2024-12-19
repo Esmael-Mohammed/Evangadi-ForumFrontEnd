@@ -70,3 +70,34 @@
   border: none;
   cursor: pointer;
 }
+@media screen and (min-width:768px) and (max-width:1024px) {
+  .signup__container{
+    align-content: center;
+    padding-top: 0;
+    /* height: 530px; */
+    width:90%;
+    /* margin-left: 35px; */
+    /* margin-top: -30px; */
+   
+  }
+} 
+  
+
+@media screen and (max-width:480px) {
+  .signup__container{
+    align-content: center;
+    padding-top: 0;
+    height: 530px;
+    margin-left: 35px;
+    margin-top: -30px;
+    margin-bottom: -50px;
+  }
+  .multi__inputs{
+    flex-direction: column;
+  }
+  .signup__title p{
+    font-size: 12px;
+  }
+  
+}
+

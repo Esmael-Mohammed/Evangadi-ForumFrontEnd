@@ -51,7 +51,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
           <h4>Join the Network</h4>
           <p>
             Already have an account?{" "}
-            <span onClick={() => userSignIn()}>Sin in</span>
+            <span onClick={() => userSignIn()}>Sign in</span>
           </p>
         </div>
         <input
