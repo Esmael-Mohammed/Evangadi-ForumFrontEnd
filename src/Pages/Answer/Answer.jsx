@@ -73,9 +73,9 @@ const Answer = ({ user, storeUser }) => {
       setAnswers(data.reverse());
     } catch (error) {
       console.error(error.message);
-      toast.error("Something error fetching answer ", {
-        position: "top-center",
-      });
+      // toast.error("Something error fetching answer ", {
+      //   position: "top-center",
+      // });
     }
   };
 

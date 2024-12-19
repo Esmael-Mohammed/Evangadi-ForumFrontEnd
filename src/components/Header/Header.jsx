@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Header.module.css";
 import logo from "../../assets/images/evangadi-logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../API/axios";
 import { toast } from "react-toastify";
 
@@ -29,7 +29,7 @@ const Header = ({ removeUser }) => {
         removeUser();
 
         navigate("/");
-        toast.success(data.message, {
+        toast.success(data.msg, {
           position: "top-center",
         });
       }
@@ -41,10 +41,11 @@ const Header = ({ removeUser }) => {
     <div className={classes.header__container}>
       <div className={classes.header__wrapper}>
         <div className={classes.header__logo}>
-          <img src={logo} alt="" />
+          <Link to="/dashboard"><img src={logo} alt="" /></Link>
+          
         </div>
         <div className={classes.header__title}>
-          <p>Home</p>
+          <Link to="/dashboard"><p>Home</p></Link>
           <p>How it works</p>
           {token && <button onClick={logoutUser}>logOut</button>}
           {!token && <button>SIGN IN</button>}

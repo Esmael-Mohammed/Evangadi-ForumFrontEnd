@@ -28,7 +28,7 @@ const Home = ({ user, storeUser }) => {
       });
       storeUser(data.userName);
       // console.log(data);
-       fetchAllQuestions();
+        fetchAllQuestions();
     } catch (error) {
       console.error(error.response);
       toast.error("Please log in to your account first. ", {
@@ -36,7 +36,7 @@ const Home = ({ user, storeUser }) => {
       });
     }
   };
-
+// http://localhost:3003/api/question
   const fetchAllQuestions = async () => {
     try {
       const { data } = await axios.get("/question", {
@@ -50,12 +50,13 @@ const Home = ({ user, storeUser }) => {
           position: "top-center",
         });
       }
-      setQuestions(data.reverse());
-      // console.log(data);
+      // console.log(data.data);
+      setQuestions(data.data.reverse());
     } catch (error) {
-      toast.error(`Error: ${error.response?.data?.message || "Fetching question error"}`, {
-        position: "top-center",
-      });
+      // toast.error(`Error: ${error.response?.data?.message || "Fetching question error"}`, {
+      //   position: "top-center",
+      // });
+      console.error(error)
     }
   };
 
