@@ -28,7 +28,6 @@
   padding: 10px;
   border: 1px solid #c5c5c5;
   border-radius: 4px;
-  outline-color: lightgreen;
 }
 .signup__wrapper .multi__inputs {
   display: flex;
@@ -39,6 +38,12 @@
 .password__input {
   position: relative;
   width: 100%;
+}
+.signup__wrapper input:focus{
+  
+  border-bottom:2px solid #f6912b;
+  outline: none;
+
 }
 
 /* Icon styles */
@@ -56,6 +61,7 @@
 /* Hover effect on the icon */
 .password_eye_icon:hover {
   opacity: 1;
+  color: #f6912b;
 }
 .signup__terms {
   margin-bottom: 20px;
@@ -69,6 +75,11 @@
   background-color: #516cf0;
   border: none;
   cursor: pointer;
+  
+}
+.signup__wrapper button:hover{
+  opacity: 1;
+  background-color: #2346f5;
 }
 @media screen and (min-width:768px) and (max-width:1024px) {
   .signup__container{

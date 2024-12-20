@@ -16,9 +16,10 @@ const Home = ({ user, storeUser }) => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
+  if(!token){
+    toast.error("Please login First ?")
+  }
   
-  console.log("token",token)
-
   const checkUserLogged = async () => {
     try {
       const { data } = await axios.get("/user/check", {
@@ -53,10 +54,10 @@ const Home = ({ user, storeUser }) => {
       // console.log(data.data);
       setQuestions(data.data.reverse());
     } catch (error) {
-      // toast.error(`Error: ${error.response?.data?.message || "Fetching question error"}`, {
-      //   position: "top-center",
-      // });
-      console.error(error)
+      toast.error(`Error: ${error.response?.data?.message || "Fetching question error"}`, {
+        position: "top-center",
+      });
+      // console.error(error)
     }
   };
 

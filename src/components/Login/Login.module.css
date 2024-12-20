@@ -29,7 +29,11 @@
   padding: 10px;
   border: 1px solid #c5c5c5;
   border-radius: 4px;
-  outline-color: lightgreen;
+  /* outline-color: lightgreen; */
+}
+.signin__inputs input:focus{
+  border-bottom: 2px solid #f6912b;
+  outline: none;
 }
 
 /* Custom styles for the input field */
@@ -53,6 +57,7 @@
 /* Hover effect on the icon */
 .password_eye_icon:hover {
   opacity: 1;
+  color: #f6912b;
 }
 
 .signin__terms {
@@ -69,6 +74,10 @@
   background-color: #516cf0;
   border: none;
   cursor: pointer;
+}
+.signin__wrapper button:hover{
+  opacity: 1;
+  background-color: #2346f5;
 }
 .toast__message {
   background: darkblue;

@@ -26,8 +26,13 @@
 .question__detail h4 {
   font-size: 18px;
   font-style: italic;
-  text-decoration: underline;
+  /* border-bottom: 2px solid #f6912b; */
+  text-decoration:underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #f6912b;
+  
 }
+
 .question__detail h6 {
   font-size: 15px;
   padding-top: 12px;

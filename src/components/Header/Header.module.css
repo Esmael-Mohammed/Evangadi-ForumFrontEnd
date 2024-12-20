@@ -7,7 +7,11 @@
   background-color: white;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
 }
-
+.header__container a
+{
+  text-decoration: none;
+  color: #000;
+}
 .header__wrapper {
   padding: 10px 40px;
   margin-left: 40px;
@@ -33,9 +37,6 @@
   }
   .header__container img{
     width: 100%;
-    
   }
-  .header__container{
-    
-  }
+  
 }
