@@ -32,7 +32,7 @@
   font-family: Poppins, sans-serif;
   font-weight: bolder;
   margin-bottom: 10px;
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(310deg, #000, #e33f00);
 }
