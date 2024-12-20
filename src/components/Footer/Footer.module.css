@@ -11,15 +11,21 @@
   align-items: center;
   justify-content: space-between;
 }
-.footer__left {
+/* .footer__left {
   margin-left: 40px;
-}
+} */
 .footer__icons {
   display: flex;
   align-items: center;
   color: white;
   gap: 30px;
   padding-top: 40px;
+}
+.footer__icons svg{
+  color: #f7f4f4;
+}
+.footer__icons svg:hover{
+  color: #2c2b2b;
 }
 .footer__middle h3,
 .footer__right h3 {
@@ -32,21 +38,34 @@
   color: #9d9d9d;
   font-size: 16px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .footer__right {
-  margin-right: 160px;
+  margin-right: 60px;
 }
 @media screen and(max-width:768px) {
-  .footer__container{
-    flex-direction: column;
-        padding: 20px 20px;
-        gap: 30px;
-  }
-  
+
+   .footer__wrapper{
+    flex-direction: row;
+    padding: 0;
+   }
+   .footer__left{
+    margin-left: 0px;
+   }
+ 
 }
 @media screen and (max-width:480px) {
   .footer__wrapper{
     flex-direction: column;
   }
-  
+  .footer__right{
+    margin-left: 30px;
+    margin-right: 0;
+  }
+  .footer__middle{
+    padding-top: 20px;
+  }
+  .footer__container{
+    padding: 10px 10px;
+  }
 }

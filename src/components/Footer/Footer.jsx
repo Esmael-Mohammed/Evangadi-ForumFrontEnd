@@ -4,6 +4,7 @@ import footerLogo from "../../assets/images/evangadi-logo-footer.png";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutubeSquare } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -12,9 +13,31 @@ const Footer = () => {
         <div className={classes.footer__left}>
           <img src={footerLogo} alt="" />
           <div className={classes.footer__icons}>
-            <FaFacebook size={30} />
-            <FaInstagram size={30} />
-            <FaYoutubeSquare size={30} />
+            
+            <a
+              href="https://facebook.com/evangaditech"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook size={30} />
+            </a>
+            <a
+              href="https://www.instagram.com/evangaditech/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram size={30} />
+            </a>
+            <a
+              href="https://www.youtube.com/@EvangadiTech"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutubeSquare size={30} />
+            </a>
+
+            
+            
           </div>
         </div>
         <div className={classes.footer__middle}>
