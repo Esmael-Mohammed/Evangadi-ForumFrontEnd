@@ -37,7 +37,7 @@ const Question = ({ storeUser }) => {
     e.preventDefault();
     try {
       await axios.post(
-        "/questions",
+        "/question",
         {
           title: titleDom.current.value,
           description: descDom.current.value,

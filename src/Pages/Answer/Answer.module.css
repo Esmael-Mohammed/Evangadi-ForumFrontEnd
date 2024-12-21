@@ -12,11 +12,11 @@
   /* justify-content: space-between; */
   flex-direction: column;
   gap: 40px;
-  border: 1px solid black;
+  border: 1px solid rgb(137, 136, 136);
 }
 .answer__container .answer__wrapper hr {
   width: 100%;
-  border: 1px solid rgb(182, 181, 181);
+  border: 1px solid rgb(230, 228, 228);
 }
 
 .answer__container .answer__wrapper h1 {
@@ -25,14 +25,11 @@
 }
 .question__detail h4 {
   font-size: 18px;
-  font-style: italic;
-  /* border-bottom: 2px solid #f6912b; */
-  text-decoration:underline;
-  text-decoration-thickness: 2px;
+  font-style: normal;
+  text-decoration: underline;
   text-decoration-color: #f6912b;
-  
+  text-decoration-thickness: 3px;
 }
-
 .question__detail h6 {
   font-size: 15px;
   padding-top: 12px;
@@ -43,11 +40,19 @@
   font-weight: bold;
 }
 .all__questions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  padding: 10px 0px 10px 40px;
+}
+.all__question {
   display: flex;
   align-items: center;
   text-align: center;
   gap: 60px;
-  padding: 10px 0px 10px 40px;
+  /* padding: 10px 0px 10px 40px; */
 }
 .question__user {
   display: flex;
@@ -55,6 +60,19 @@
   gap: 10px;
   align-items: center;
 }
+.question__user h6,
+.question__answer h6 {
+  font-size: 16px;
+  font-style: initial;
+}
+.question__delete {
+  padding-right: 10px;
+  display: none;
+}
+.all__questions:hover .question__delete {
+  display: block;
+}
+
 .post__answer {
   width: 100%;
   display: flex;

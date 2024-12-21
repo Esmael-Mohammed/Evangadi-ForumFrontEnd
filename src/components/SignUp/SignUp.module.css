@@ -39,11 +39,9 @@
   position: relative;
   width: 100%;
 }
-.signup__wrapper input:focus{
-  
-  border-bottom:2px solid #f6912b;
+.signup__wrapper input:focus {
+  border-bottom: 2px solid #f6912b;
   outline: none;
-
 }
 
 /* Icon styles */
@@ -75,39 +73,39 @@
   background-color: #516cf0;
   border: none;
   cursor: pointer;
-  
 }
-.signup__wrapper button:hover{
+.signup__wrapper button:hover {
   opacity: 1;
   background-color: #2346f5;
 }
-@media screen and (min-width:768px) and (max-width:1024px) {
-  .signup__container{
-    align-content: center;
-    padding-top: 0;
-    /* height: 530px; */
-    width:90%;
-    /* margin-left: 35px; */
-    /* margin-top: -30px; */
-   
+@media (max-width: 768px) {
+  .signup__title h4 {
+    font-size: 15px;
+    font-weight: 400;
   }
-} 
-  
+  .signup__wrapper {
+    margin-top: 10px;
+  }
+  .signup__wrapper button {
+    width: 100%;
+    padding: 10px 0px;
+    color: white;
+    font-size: 14px;
+  }
+}
 
-@media screen and (min-width:320px) and (max-width:480px) {
-  .signup__container{
-    padding-top: 0;
-    height: 530px;
+@media (max-width: 480px) {
+  .signup__container {
+    padding-top: 20px;
+    height: auto;
     margin-left: 35px;
     margin-top: -30px;
     margin-bottom: -50px;
   }
-  .multi__inputs{
+  .multi__inputs {
     flex-direction: column;
   }
-  .signup__title p{
+  .signup__title p {
     font-size: 12px;
   }
-  
 }
-

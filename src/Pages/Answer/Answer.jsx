@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../API/axios";
 import classes from "./Answer.module.css";
 import { FaUserTie } from "react-icons/fa";
-// import { MdDelete } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 // react-redux
 import { connect } from "react-redux";
 // actions creation function
@@ -18,6 +18,7 @@ const Answer = ({ user, storeUser }) => {
 
   const [question, setQuestion] = useState([]);
   const [answers, setAnswers] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   const answerDom = useRef();
 
@@ -29,6 +30,7 @@ const Answer = ({ user, storeUser }) => {
         },
       });
       storeUser(data.userName);
+      setUserData(data);
       await fetchSingleQuestion();
       await getAnswer();
     } catch (error) {
@@ -42,7 +44,7 @@ const Answer = ({ user, storeUser }) => {
 
   const fetchSingleQuestion = async () => {
     try {
-      const { data } = await axios.get(`/questions/${postId}`, {
+      const { data } = await axios.get(`/question/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -78,6 +80,27 @@ const Answer = ({ user, storeUser }) => {
       // });
     }
   };
+  const deleteAnswer = async (userId) => {
+    try {
+      const { data } = await axios.delete(`/answer/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // Handle successful response
+      toast.success(data.message, {
+        position: "top-center",
+      });
+      // After deletion, fetch the updated answers
+      await getAnswer();
+    } catch (error) {
+      // Handle error response
+      console.error(error);
+      toast.error("Something error deleting answer ", {
+        position: "top-center",
+      });
+    }
+  };
 
   const postAnswer = async (e) => {
     e.preventDefault();
@@ -104,16 +127,14 @@ const Answer = ({ user, storeUser }) => {
       });
     }
   };
-
+  //fetching data when the component mount.(it represent the react)
   useEffect(() => {
     if (user) {
       checkUserLogged();
     } else {
-      navigate("/question");
+      navigate("/dashboard");
     }
   }, []);
-  // console.log(question);
-  // console.log(answers);
   return (
     <div className={classes.answer__container}>
       <div className={classes.answer__wrapper}>
@@ -131,23 +152,24 @@ const Answer = ({ user, storeUser }) => {
           return (
             <>
               <div key={i} className={classes.all__questions}>
-                <div className={classes.question__user}>
-                  <FaUserTie size={30} />
-                  <h6>{singleAnswer.userName}</h6>
+                <div className={classes.all__question}>
+                  <div className={classes.question__user}>
+                    <FaUserTie size={30} />
+                    <h6>{singleAnswer.userName}</h6>
+                  </div>
+                  <div className={classes.question__answer}>
+                    <h6>{singleAnswer.answer}</h6>
+                  </div>
                 </div>
-                <div className={classes.question__answer}>
-                  <h6>{singleAnswer.answer}</h6>
-                </div>
-                {/* {user === singleAnswer.userName && (
+                {userData.userId === singleAnswer.userId && (
                   <div className={classes.question__delete}>
                     <MdDelete
+                      className={classes.question__img}
                       size={30}
-                      onClick={() =>
-                        deleteAnswerByUser(singleAnswer.questionId)
-                      }
+                      onClick={() => deleteAnswer(userData.userId)}
                     />
                   </div>
-                )} */}
+                )}
               </div>
             </>
           );
