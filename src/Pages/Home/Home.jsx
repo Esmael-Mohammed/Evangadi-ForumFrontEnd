@@ -16,10 +16,7 @@ const Home = ({ user, storeUser }) => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
-  if(!token){
-    toast.error("Please login First ?")
-  }
-  
+
   const checkUserLogged = async () => {
     try {
       const { data } = await axios.get("/user/check", {
@@ -29,7 +26,7 @@ const Home = ({ user, storeUser }) => {
       });
       storeUser(data.userName);
       // console.log(data);
-        fetchAllQuestions();
+      fetchAllQuestions();
     } catch (error) {
       console.error(error.response);
       toast.error("Please log in to your account first. ", {
@@ -37,7 +34,7 @@ const Home = ({ user, storeUser }) => {
       });
     }
   };
-// http://localhost:3003/api/question
+  // http://localhost:3003/api/question
   const fetchAllQuestions = async () => {
     try {
       const { data } = await axios.get("/question", {
@@ -54,9 +51,12 @@ const Home = ({ user, storeUser }) => {
       // console.log(data.data);
       setQuestions(data.data.reverse());
     } catch (error) {
-      toast.error(`Error: ${error.response?.data?.message || "Fetching question error"}`, {
-        position: "top-center",
-      });
+      toast.error(
+        `Error: ${error.response?.data?.message || "Fetching question error"}`,
+        {
+          position: "top-center",
+        }
+      );
       // console.error(error)
     }
   };
@@ -66,6 +66,9 @@ const Home = ({ user, storeUser }) => {
       checkUserLogged();
     } else {
       navigate("/");
+      toast.error("Please create account or login first ! ", {
+        position: "top-center",
+      });
     }
   }, []);
 
