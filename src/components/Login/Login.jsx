@@ -40,9 +40,10 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
      }
     // Password validation
     if (!password) {
-       return toast.error("Password is required", { position: "top-center" });
+       toast.error("Password is required", { position: "top-center" });
+       return false;
     } 
-    
+    return true;
   };
   //check for logged in user
   const checkUserLogged = async () => {
@@ -85,9 +86,9 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
       }, 1000);
     } catch (error) {
       // show error message
-      // return toast.error("Email or password does't correct try again! ", {
-      //   position: "top-center",
-      // });
+      return toast.error("Email or password does't correct try again! ", {
+        position: "top-center",
+      });
       console.error(error.response);
     }
   };

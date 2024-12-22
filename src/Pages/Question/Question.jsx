@@ -15,20 +15,7 @@ const Question = ({ storeUser }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const validateQuestionForm = () => {
-      const title = titleDom.current.value;
-      const description = descDom.current.value;
-      console.log({
-        title: titleDom.current.value,
-        description: descDom.current.value,
-      });
-  
-      // 
-      if (!title || !description) {
-       toast.error("All fileds are required", { position: "top-center" });
-      } 
-      return true;
-    };
+
   const checkUserLogged = async () => {
     try {
       const { data } = await axios.get("/user/check", {
@@ -49,7 +36,6 @@ const Question = ({ storeUser }) => {
 
   const postQuestion = async (e) => {
     e.preventDefault();
-    if(!validateQuestionForm)
     try {
       await axios.post(
         "/question",
