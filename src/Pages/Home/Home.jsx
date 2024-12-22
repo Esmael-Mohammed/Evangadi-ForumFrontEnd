@@ -26,7 +26,7 @@ const Home = ({ user, storeUser }) => {
       });
       storeUser(data.userName);
       // console.log(data);
-      fetchAllQuestions();
+      await fetchAllQuestions();
     } catch (error) {
       console.error(error.response);
       toast.error("Please log in to your account first. ", {

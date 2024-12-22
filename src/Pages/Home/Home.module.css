@@ -84,6 +84,7 @@
 }
 .question__middle h6 {
   font-size: 14px;
+  text-align: start;
 }
 @media (max-width: 768px) {
   .home__header h4 {
