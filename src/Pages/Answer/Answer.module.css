@@ -48,6 +48,7 @@
   font-size: 22px;
   font-weight: bold;
 }
+/* adding boarder for all each answer  */
 .all__questions {
   width: 100%;
   display: flex;
