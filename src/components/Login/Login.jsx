@@ -122,7 +122,7 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
               className={classes.password_eye_icon}
               onClick={() => userPassword()}
             >
-              {password ? <BsEyeSlash /> : <BsEye />}
+              {password ?  <BsEye />:<BsEyeSlash />}
             </span>
           </div>
         </div>

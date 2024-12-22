@@ -208,7 +208,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
             className={classes.password_eye_icon}
             onClick={() => userPassword()}
           >
-            {password ? <BsEyeSlash /> : <BsEye />}
+            {password ?  <BsEye />:<BsEyeSlash /> }
           </span>
         </div>
         <div className={classes.signup__terms}>
