@@ -21,6 +21,18 @@ const Answer = ({ user, storeUser }) => {
   const [userData, setUserData] = useState([]);
 
   const answerDom = useRef();
+  const validateAnswerForm = () => {
+        const answer = answerDom.current.value;
+        console.log({
+          answer: titleDom.current.value,
+        });
+    
+        // 
+        if (!answer) {
+          return toast.error("Answer filed is  required", { position: "top-center" });
+        } 
+        return true;
+      };
 
   const checkUserLogged = async () => {
     try {
@@ -104,6 +116,7 @@ const Answer = ({ user, storeUser }) => {
 
   const postAnswer = async (e) => {
     e.preventDefault();
+    if(!validateAnswerForm()) return;
     try {
       await axios.post(
         "/answer",

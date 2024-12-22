@@ -31,36 +31,43 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
       email: emailDom.current.value,
       password: passwordDom.current.value,
     });
-    
 
     // Name validation
     const namePattern = /^[a-zA-Z\s]+$/;
-    if(!userName){
+    if (!userName) {
       return toast.error("user names is required", { position: "top-center" });
     }
     if (!firstName || !lastName) {
-     return toast.error("first & last names are required", { position: "top-center" });
+      return toast.error("first & last names are required", {
+        position: "top-center",
+      });
     } else if (!namePattern.test(firstName) || !namePattern.test(lastName)) {
-      return toast.error("Names must only contain letters and spaces.", { position: "top-center" });
+      return toast.error("Names must only contain letters and spaces.", {
+        position: "top-center",
+      });
     }
 
     // Email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!email) {
-       return toast.error("Email is required", { position: "top-center" });
+      return toast.error("Email is required", { position: "top-center" });
     } else if (!emailPattern.test(email)) {
-      return toast.error("Please enter a valid email address", { position: "top-center" });
+      return toast.error("Please enter a valid email address", {
+        position: "top-center",
+      });
     }
 
     // Password validation
-    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordPattern =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!password) {
-       return toast.error("Password is required", { position: "top-center" });
+      return toast.error("Password is required", { position: "top-center" });
       return false;
-    }
-    else if (!passwordPattern.test(password)) {
-     return toast.error("Password must be at least 8 characters, include a number and a special character.", 
-      { position: "top-center" });
+    } else if (!passwordPattern.test(password)) {
+      return toast.error(
+        "Password must be at least 8 characters, include a number and a special character.",
+        { position: "top-center" }
+      );
     }
 
     return true;
@@ -86,7 +93,9 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
         navigate("/dashboard");
       }, 1300);
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Signup failed", { position: "top-center" });
+      toast.error(error?.response?.data?.message || "Signup failed", {
+        position: "top-center",
+      });
       navigate("/");
     }
   };
@@ -101,12 +110,32 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
             <span onClick={() => userSignIn()}>Sign in</span>
           </p>
         </div>
-        <input name="userName" ref={userNameDom} type="text" placeholder="User name" />
+        <input
+          name="userName"
+          ref={userNameDom}
+          type="text"
+          placeholder="User name"
+        />
         <div className={classes.multi__inputs}>
-          <input name="firstName" ref={firstNameDom} type="text" placeholder="First name" />
-          <input  name="lastName" ref={lastNameDom} type="text" placeholder="Last name" />
+          <input
+            name="firstName"
+            ref={firstNameDom}
+            type="text"
+            placeholder="First name"
+          />
+          <input
+            name="lastName"
+            ref={lastNameDom}
+            type="text"
+            placeholder="Last name"
+          />
         </div>
-        <input name="email" ref={emailDom} type="email" placeholder="Email address" />
+        <input
+          name="email"
+          ref={emailDom}
+          type="email"
+          placeholder="Email address"
+        />
         <div className={classes.password__input}>
           <input
             name="password"
@@ -114,7 +143,10 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
             type={password ? "text" : "password"}
             placeholder="Password"
           />
-          <span className={classes.password_eye_icon} onClick={() => userPassword()}>
+          <span
+            className={classes.password_eye_icon}
+            onClick={() => userPassword()}
+          >
             {password ? <BsEyeSlash /> : <BsEye />}
           </span>
         </div>
