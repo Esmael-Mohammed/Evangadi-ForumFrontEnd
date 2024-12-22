@@ -154,6 +154,7 @@ const Answer = ({ user, storeUser }) => {
         <h2>Question</h2>
         <div className={classes.question__detail}>
           <h4>{question?.title}</h4>
+          <hr />
           <h6>{question?.description}</h6>
         </div>
         <hr />

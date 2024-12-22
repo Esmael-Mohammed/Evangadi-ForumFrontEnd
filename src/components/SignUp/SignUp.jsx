@@ -18,6 +18,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
   const passwordDom = useRef();
   const navigate = useNavigate();
 
+
   const validateSignupForm = () => {
     const userName = userNameDom.current.value;
     const firstName = firstNameDom.current.value;
@@ -73,6 +74,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
     return true;
   };
 
+
   const signUpHandling = async (e) => {
     e.preventDefault();
     if (!validateSignupForm()) return;
@@ -86,7 +88,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
         password: passwordDom.current.value,
       });
 
-      console.log(data);
+
       storeUser(data.userName);
       localStorage.setItem("token", data.token);
       setTimeout(() => {
