@@ -28,10 +28,10 @@ const Home = ({ user, storeUser }) => {
       // console.log(data);
       fetchAllQuestions();
     } catch (error) {
-      console.error(error.response);
-      toast.error("Please log in to your account first. ", {
-        position: "top-center",
-      });
+      console.error(error);
+      // toast.error("Please log in to your account first. ", {
+      //   position: "top-center",
+      // });
     }
   };
   // http://localhost:3003/api/question

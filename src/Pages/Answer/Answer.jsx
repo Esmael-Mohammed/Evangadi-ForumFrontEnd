@@ -52,10 +52,10 @@ const Answer = ({ user, storeUser }) => {
       setQuestion(data);
       // storeUser(data.userName);
     } catch (error) {
-      // console.log(error.message);
-      toast.error("No question found ", {
-        position: "top-center",
-      });
+      console.log(error);
+      // toast.error("No question found ", {
+      //   position: "top-center",
+      // });
     }
   };
 
