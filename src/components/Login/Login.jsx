@@ -79,7 +79,7 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
         password: passwordDom.current.value,
       });
       // console.log(data);
-      storeUser(data.userName);
+      storeUser(data?.userName);
       localStorage.setItem("token", data.token);
       setTimeout(() => {
         navigate("/dashboard");

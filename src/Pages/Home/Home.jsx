@@ -24,7 +24,7 @@ const Home = ({ user, storeUser }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      storeUser(data.userName);
+      storeUser(data?.userName);
       // console.log(data);
       await fetchAllQuestions();
     } catch (error) {
@@ -94,7 +94,7 @@ const Home = ({ user, storeUser }) => {
             <Link
               key={i}
               className={classes.question__container}
-              to={`/answer/${singleQuestion.questionId}`}
+              to={`/answer/${singleQuestion?.questionId}`}
             >
               <hr />
               <div className={classes.question__wrapper}>
@@ -102,10 +102,10 @@ const Home = ({ user, storeUser }) => {
                   <div className={classes.question__img}>
                     <FaUserTie size={35} />
                   </div>
-                  <h6>{singleQuestion.userName}</h6>
+                  <h6>{singleQuestion?.userName}</h6>
                 </div>
                 <div className={classes.question__middle}>
-                  <h6>{singleQuestion.title}</h6>
+                  <h6>{singleQuestion?.title}</h6>
                 </div>
                 <div className={classes.question__right}>
                   <FaAngleRight size={30} />
