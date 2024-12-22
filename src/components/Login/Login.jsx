@@ -20,6 +20,39 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  const validateSigninForm = () => {
+    const email = emailDom.current.value;
+    const password = passwordDom.current.value;
+    console.log({
+      email: emailDom.current.value,
+      password: passwordDom.current.value,
+    });
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email) {
+      return toast.error("Email is required", { position: "top-center" });
+    } else if (!emailPattern.test(email)) {
+      return toast.error("Please enter a valid email address", {
+        position: "top-center",
+      });
+    }
+
+    // Password validation
+    const passwordPattern =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!password) {
+      return toast.error("Password is required", { position: "top-center" });
+    } else if (!passwordPattern.test(password)) {
+      return toast.error(
+        "Password must be at least 8 characters, include a number and a special character.",
+        { position: "top-center" }
+      );
+    }
+
+    return true;
+  };
   //check for logged in user
   const checkUserLogged = async () => {
     try {
@@ -46,6 +79,8 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
   // signin function to call the API and handle to sign in user
   const signInHandling = async (e) => {
     e.preventDefault();
+    if (!validateSigninForm()) return;
+
     try {
       const { data } = await axios.post("/user/login", {
         email: emailDom.current.value,
@@ -59,9 +94,10 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
       }, 1000);
     } catch (error) {
       // show error message
-      toast.error("Email or password does't correct try again! ", {
-        position: "top-center",
-      });
+      // toast.error("Email or password does't correct try again! ", {
+      //   position: "top-center",
+      // });
+      console.error(error.response);
     }
   };
 
@@ -77,7 +113,6 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
         </div>
         <div className={classes.signin__inputs}>
           <input
-            required
             name="email"
             ref={emailDom}
             type="email"
@@ -85,7 +120,6 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
           />
           <div className={classes.password__input}>
             <input
-              required
               name="password"
               ref={passwordDom}
               type={password ? "text" : "password"}

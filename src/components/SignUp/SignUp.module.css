@@ -55,6 +55,14 @@
   cursor: pointer;
   font-size: 18px; /* Adjust the size of the icon */
 }
+.error {
+  border-color: red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.9rem;
+}
 
 /* Hover effect on the icon */
 .password_eye_icon:hover {
