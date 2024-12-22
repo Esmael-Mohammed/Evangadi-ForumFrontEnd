@@ -24,12 +24,12 @@ const Answer = ({ user, storeUser }) => {
   const validateAnswerForm = () => {
         const answer = answerDom.current.value;
         console.log({
-          answer: titleDom.current.value,
+          answer: answerDom.current.value,
         });
     
         // 
         if (!answer) {
-          return toast.error("Answer filed is  required", { position: "top-center" });
+        toast.error("Answer filed is  required", { position: "top-center" });
         } 
         return true;
       };

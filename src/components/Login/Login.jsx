@@ -29,29 +29,20 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
       password: passwordDom.current.value,
     });
 
-    // Email validation
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!email) {
-      return toast.error("Email is required", { position: "top-center" });
-    } else if (!emailPattern.test(email)) {
-      return toast.error("Please enter a valid email address", {
-        position: "top-center",
-      });
-    }
-
+ // Email validation
+     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+     if (!email) {
+       toast.error("Email is required", { position: "top-center" });
+       return false;
+     } else if (!emailPattern.test(email)) {
+       toast.error("Please enter a valid email address", { position: "top-center" });
+       return false;
+     }
     // Password validation
-    const passwordPattern =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!password) {
-      return toast.error("Password is required", { position: "top-center" });
-    } else if (!passwordPattern.test(password)) {
-      return toast.error(
-        "Password must be at least 8 characters, include a number and a special character.",
-        { position: "top-center" }
-      );
-    }
-
-    return true;
+       return toast.error("Password is required", { position: "top-center" });
+    } 
+    
   };
   //check for logged in user
   const checkUserLogged = async () => {
@@ -94,7 +85,7 @@ const Login = ({ storeUser, userSignUp, userPassword, password }) => {
       }, 1000);
     } catch (error) {
       // show error message
-      // toast.error("Email or password does't correct try again! ", {
+      // return toast.error("Email or password does't correct try again! ", {
       //   position: "top-center",
       // });
       console.error(error.response);

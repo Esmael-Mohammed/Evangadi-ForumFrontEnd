@@ -19,61 +19,120 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
   const navigate = useNavigate();
 
 
+  // const validateSignupForm = () => {
+  //   const userName = userNameDom.current.value;
+  //   const firstName = firstNameDom.current.value;
+  //   const lastName = lastNameDom.current.value;
+  //   const email = emailDom.current.value;
+  //   const password = passwordDom.current.value;
+  //   console.log({
+  //     userName: userNameDom.current.value,
+  //     firstName: firstNameDom.current.value,
+  //     lastName: lastNameDom.current.value,
+  //     email: emailDom.current.value,
+  //     password: passwordDom.current.value,
+  //   });
+
+  //   // Name validation
+  //   const namePattern = /^[a-zA-Z\s]+$/;
+  //   if (!userName) {
+  //     toast.error("user names is required", { position: "top-center" });
+  //     return false;
+  //   }
+  //   if (!firstName || !lastName) {
+  //      toast.error("first & last names are required", {
+  //       position: "top-center",
+  //     });
+  //     return false;
+  //   } else if (!namePattern.test(firstName) || !namePattern.test(lastName)) {
+  //      toast.error("Names must only contain letters and spaces.", {
+  //       position: "top-center",
+  //     });
+  //     return false;
+  //   }
+
+  //   // Email validation
+  //   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  //   if (!email) {
+  //      toast.error("Email is required", { position: "top-center" });
+  //      return false;
+  //   } else if (!emailPattern.test(email)) {
+  //     toast.error("Please enter a valid email address", {
+  //       position: "top-center",
+  //     });
+  //     return false;
+  //   }
+
+  //   // Password validation
+  //   const passwordPattern =/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  //   if (!password) {
+  //      toast.error("Password is required", { position: "top-center" });
+  //      return false;
+  //   } else if (!passwordPattern.test(password)) {
+  //       toast.error(
+  //       "Password must be at least 8 characters, include a number and a special character.",
+  //       { position: "top-center" }
+  //     );
+  //     return false
+  //   }
+
+  //   return true;
+  // };
   const validateSignupForm = () => {
     const userName = userNameDom.current.value;
     const firstName = firstNameDom.current.value;
     const lastName = lastNameDom.current.value;
     const email = emailDom.current.value;
     const password = passwordDom.current.value;
+  
     console.log({
-      userName: userNameDom.current.value,
-      firstName: firstNameDom.current.value,
-      lastName: lastNameDom.current.value,
-      email: emailDom.current.value,
-      password: passwordDom.current.value,
+      userName: userName,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
     });
-
+  
     // Name validation
     const namePattern = /^[a-zA-Z\s]+$/;
     if (!userName) {
-      return toast.error("user names is required", { position: "top-center" });
+      toast.error("User name is required", { position: "top-center" });
+      return false;
     }
     if (!firstName || !lastName) {
-      return toast.error("first & last names are required", {
-        position: "top-center",
-      });
+      toast.error("First & last names are required", { position: "top-center" });
+      return false;
     } else if (!namePattern.test(firstName) || !namePattern.test(lastName)) {
-      return toast.error("Names must only contain letters and spaces.", {
-        position: "top-center",
-      });
+      toast.error("Names must only contain letters and spaces.", { position: "top-center" });
+      return false;
     }
-
+  
     // Email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!email) {
-      return toast.error("Email is required", { position: "top-center" });
-    } else if (!emailPattern.test(email)) {
-      return toast.error("Please enter a valid email address", {
-        position: "top-center",
-      });
-    }
-
-    // Password validation
-    const passwordPattern =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!password) {
-      return toast.error("Password is required", { position: "top-center" });
+      toast.error("Email is required", { position: "top-center" });
       return false;
-    } else if (!passwordPattern.test(password)) {
-      return toast.error(
-        "Password must be at least 8 characters, include a number and a special character.",
-        { position: "top-center" }
-      );
+    } else if (!emailPattern.test(email)) {
+      toast.error("Please enter a valid email address", { position: "top-center" });
+      return false;
     }
-
+  
+    // Password validation
+    // const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!password) {
+      toast.error("Password is required", { position: "top-center" });
+      return false;
+    // } else if (!passwordPattern.test(password)) {
+    //   toast.error(
+    //     "Password must be at least 8 characters, include a number and a special character.",
+    //     { position: "top-center" }
+    //   );
+    //   return false;
+    // }
+    }
     return true;
   };
-
+  
 
   const signUpHandling = async (e) => {
     e.preventDefault();

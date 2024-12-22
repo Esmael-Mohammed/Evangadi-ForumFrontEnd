@@ -25,7 +25,7 @@ const Question = ({ storeUser }) => {
   
       // 
       if (!title || !description) {
-        return toast.error("All fileds are required", { position: "top-center" });
+       toast.error("All fileds are required", { position: "top-center" });
       } 
       return true;
     };
