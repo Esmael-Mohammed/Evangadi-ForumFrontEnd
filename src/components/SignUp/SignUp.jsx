@@ -25,14 +25,6 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
     const email = emailDom.current.value;
     const password = passwordDom.current.value;
 
-    console.log({
-      userName: userName,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    });
-
     // Name validation
     const namePattern = /^[a-zA-Z\s]+$/;
     if (!userName) {
