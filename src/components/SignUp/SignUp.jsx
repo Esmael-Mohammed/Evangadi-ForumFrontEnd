@@ -11,9 +11,12 @@ import { connect } from "react-redux";
 import { storeUser, userSignIn, userPassword } from "../../Utility/action";
 
 const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
-  const{ userNameDom, firstNameDom,lastNameDom,emailDom,passwordDom} = useRef();
+  const userNameDom = useRef(),
+    firstNameDom = useRef(),
+    lastNameDom = useRef(),
+    emailDom = useRef(),
+    passwordDom = useRef();
   const navigate = useNavigate();
-
 
   const validateSignupForm = () => {
     const userName = userNameDom.current.value;
@@ -21,7 +24,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
     const lastName = lastNameDom.current.value;
     const email = emailDom.current.value;
     const password = passwordDom.current.value;
-  
+
     console.log({
       userName: userName,
       firstName: firstName,
@@ -29,7 +32,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
       email: email,
       password: password,
     });
-  
+
     // Name validation
     const namePattern = /^[a-zA-Z\s]+$/;
     if (!userName) {
@@ -37,39 +40,44 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
       return false;
     }
     if (!firstName || !lastName) {
-      toast.error("First & last names are required", { position: "top-center" });
+      toast.error("First & last names are required", {
+        position: "top-center",
+      });
       return false;
     } else if (!namePattern.test(firstName) || !namePattern.test(lastName)) {
-      toast.error("Names must only contain letters and spaces.", { position: "top-center" });
+      toast.error("Names must only contain letters and spaces.", {
+        position: "top-center",
+      });
       return false;
     }
-  
+
     // Email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!email) {
       toast.error("Email is required", { position: "top-center" });
       return false;
     } else if (!emailPattern.test(email)) {
-      toast.error("Please enter a valid email address", { position: "top-center" });
+      toast.error("Please enter a valid email address", {
+        position: "top-center",
+      });
       return false;
     }
-  
+
     // Password validation
     // const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!password) {
       toast.error("Password is required", { position: "top-center" });
       return false;
-    // } else if (!passwordPattern.test(password)) {
-    //   toast.error(
-    //     "Password must be at least 8 characters, include a number and a special character.",
-    //     { position: "top-center" }
-    //   );
-    //   return false;
-    // }
+      // } else if (!passwordPattern.test(password)) {
+      //   toast.error(
+      //     "Password must be at least 8 characters, include a number and a special character.",
+      //     { position: "top-center" }
+      //   );
+      //   return false;
+      // }
     }
     return true;
   };
-  
 
   const signUpHandling = async (e) => {
     e.preventDefault();
@@ -83,7 +91,6 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
         email: emailDom.current.value,
         password: passwordDom.current.value,
       });
-
 
       storeUser(data.userName);
       localStorage.setItem("token", data.token);
@@ -145,7 +152,7 @@ const SignUp = ({ storeUser, userSignIn, userPassword, password }) => {
             className={classes.password_eye_icon}
             onClick={() => userPassword()}
           >
-            {password ?  <BsEye />:<BsEyeSlash /> }
+            {password ? <BsEye /> : <BsEyeSlash />}
           </span>
         </div>
         <div className={classes.signup__terms}>

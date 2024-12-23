@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = ({ storeUser, userSignUp, userPassword, password }) => {
   //hooks to control inputs data
-  const {emailDom,passwordDom }= useRef();
+  const emailDom= useRef(),passwordDom = useRef();
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
