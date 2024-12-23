@@ -14,7 +14,7 @@ const App = () => {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/" element={<Landing />}></Route>
+          <Route index element={<Landing />}></Route>
           <Route path="/dashboard" element={<Home />}></Route>
           <Route path="/question" element={<Question />}></Route>
           <Route path="/answer/:questionId" element={<Answer />} />
