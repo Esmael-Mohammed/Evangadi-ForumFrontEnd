@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { IoChevronForwardCircleSharp } from "react-icons/io5";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
 import axios from "../../API/axios";
 import classes from "./Answer.module.css";
 import { FaUserTie } from "react-icons/fa";
@@ -16,9 +18,12 @@ const Answer = ({ user, storeUser }) => {
   const { questionId: postId } = useParams();
   const navigate = useNavigate();
 
+  
   const [question, setQuestion] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+    const [answersPerPage] = useState(10);
 
   const answerDom = useRef();
   
@@ -136,6 +141,31 @@ const Answer = ({ user, storeUser }) => {
       navigate("/dashboard");
     }
   }, []);
+  // Calculate total pages
+  const totalPages =
+    answers.length % answersPerPage === 0
+      ? answers.length / answersPerPage
+      : Math.floor(questions.length / answersPerPage) + 1;
+
+  // Pagination logic
+  const lastAnswers = currentPage * answersPerPage;
+  const firstAnswers = lastAnswers - answersPerPage;
+  const currentAnswers = answers.slice(
+    firstAnswers,
+    lastAnswers
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
   return (
     <div className={classes.answer__container}>
       <div className={classes.answer__wrapper}>
@@ -150,7 +180,7 @@ const Answer = ({ user, storeUser }) => {
           <h1>Answer From The Community</h1>
         </div>
         <hr />
-        {answers?.map((singleAnswer, i) => {
+        {currentAnswers?.map((singleAnswer, i) => {
           return (
             <>
               <div key={i} className={classes.all__questions}>
@@ -176,6 +206,22 @@ const Answer = ({ user, storeUser }) => {
             </>
           );
         })}
+        <div className={classes.pagination}>
+                  <button onClick={handlePreviousPage} disabled={currentPage === 1} 
+                  className={classes.pagination__button}>
+                    <IoChevronBackCircleSharp size={25}/>
+                  </button>
+                  <span>
+                  {currentPage} of {totalPages}
+                  </span>
+                  <button
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    className={classes.pagination__button}
+                  >
+                    <IoChevronForwardCircleSharp size={25}/>
+                  </button>
+                </div>
         <form onSubmit={postAnswer} className={classes.post__answer}>
           <div className={classes.text__area}>
             <textarea rows="4" ref={answerDom} placeholder="Your Answer ..." />

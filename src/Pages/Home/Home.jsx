@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Home.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { IoChevronForwardCircleSharp } from "react-icons/io5";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
 import axios from "../../API/axios";
 // react-redux
 import { connect } from "react-redux";
@@ -12,11 +14,14 @@ import { FaAngleRight } from "react-icons/fa";
 
 const Home = ({ user, storeUser }) => {
   const [questions, setQuestions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [questionsPerPage] = useState(10);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
-
   const token = localStorage.getItem("token");
 
+  // Check if the user is logged in
   const checkUserLogged = async () => {
     try {
       const { data } = await axios.get("/user/check", {
@@ -25,16 +30,13 @@ const Home = ({ user, storeUser }) => {
         },
       });
       storeUser(data?.userName);
-      // console.log(data);
       await fetchAllQuestions();
     } catch (error) {
       console.error(error);
-      // toast.error("Please log in to your account first. ", {
-      //   position: "top-center",
-      // });
     }
   };
-  // http://localhost:3003/api/question
+
+  // Fetch all questions
   const fetchAllQuestions = async () => {
     try {
       const { data } = await axios.get("/question", {
@@ -44,20 +46,20 @@ const Home = ({ user, storeUser }) => {
       });
       if (!data || data.length === 0) {
         setQuestions([]);
-        toast.error("No question found ", {
+        toast.error("No questions found", {
           position: "top-center",
         });
       }
-      // console.log(data.data);
       setQuestions(data.data.reverse());
     } catch (error) {
       toast.error(
-        `Error: ${error.response?.data?.message || "Fetching question error"}`,
+        `Error: ${error.response?.data?.message || "Fetching questions error"}`,
         {
           position: "top-center",
         }
       );
-      // console.error(error)
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -66,14 +68,38 @@ const Home = ({ user, storeUser }) => {
       checkUserLogged();
     } else {
       navigate("/");
-      toast.error("Please create account or login first ! ", {
+      toast.error("Please create an account or log in first!", {
         position: "top-center",
       });
     }
   }, []);
 
-  console.log(questions);
-  console.log(user);
+  // Calculate total pages
+  const totalPages =
+    questions.length % questionsPerPage === 0
+      ? questions.length / questionsPerPage
+      : Math.floor(questions.length / questionsPerPage) + 1;
+
+  // Pagination logic
+  const lastQuestion = currentPage * questionsPerPage;
+  const firstQuestion = lastQuestion - questionsPerPage;
+  const currentQuestions = questions.slice(
+    firstQuestion,
+    lastQuestion
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
   return (
     <div className={classes.home__container}>
       <div className={classes.home__wrapper}>
@@ -89,35 +115,52 @@ const Home = ({ user, storeUser }) => {
         <div className={classes.home_search_question}>
           <input placeholder="Search question" />
         </div>
-        {questions?.map((singleQuestion, i) => {
-          return (
-            <Link
-              key={i}
-              className={classes.question__container}
-              to={`/answer/${singleQuestion?.questionId}`}
-            >
-              <hr />
-              <div className={classes.question__wrapper}>
-                <div className={classes.question__left}>
-                  <div className={classes.question__img}>
-                    <FaUserTie size={35} />
-                  </div>
-                  <h6>{singleQuestion?.userName}</h6>
+        {loading ? (
+          <p>Loading questions...</p>
+        ):currentQuestions.map((singleQuestion, i) => (
+          <Link
+            key={i}
+            className={classes.question__container}
+            to={`/answer/${singleQuestion?.questionId}`}
+          >
+            <hr />
+            <div className={classes.question__wrapper}>
+              <div className={classes.question__left}>
+                <div className={classes.question__img}>
+                  <FaUserTie size={35} />
                 </div>
-                <div className={classes.question__middle}>
-                  <h6>{singleQuestion?.title}</h6>
-                </div>
-                <div className={classes.question__right}>
-                  <FaAngleRight size={30} />
-                </div>
+                <h6>{singleQuestion?.userName}</h6>
               </div>
-            </Link>
-          );
-        })}
+              <div className={classes.question__middle}>
+                <h6>{singleQuestion?.title}</h6>
+              </div>
+              <div className={classes.question__right}>
+                <FaAngleRight size={30} />
+              </div>
+            </div>
+          </Link>
+        ))}
+        <div className={classes.pagination}>
+          <button onClick={handlePreviousPage} disabled={currentPage === 1} 
+          className={classes.pagination__button}>
+            <IoChevronBackCircleSharp size={25}/>
+          </button>
+          <span>
+          {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={classes.pagination__button}
+          >
+            <IoChevronForwardCircleSharp size={25}/>
+          </button>
+        </div>
       </div>
     </div>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     user: state.user,
@@ -130,5 +173,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// export default Home;
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

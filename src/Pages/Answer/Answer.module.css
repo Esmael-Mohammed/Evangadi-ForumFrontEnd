@@ -110,3 +110,25 @@
 .text__area {
   width: 100%;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination__button {
+  background-color: #f6912b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.pagination__button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
