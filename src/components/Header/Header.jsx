@@ -46,9 +46,11 @@ const Header = ({ removeUser }) => {
         </div>
         <div className={classes.header__title}>
           <Link to="/dashboard"><p>Home</p></Link>
-          <p>How it works</p>
+          <a href="https://www.evangadi.com/" target="_blank">
+             <button>How it works</button>
+            </a>
           {token && <button onClick={logoutUser}>logOut</button>}
-          {!token && <button>SIGN IN</button>}
+          {!token && <a href="http://localhost:5173/" target="_blank"><button>SIGN IN</button></a>}
         </div>
       </div>
     </div>

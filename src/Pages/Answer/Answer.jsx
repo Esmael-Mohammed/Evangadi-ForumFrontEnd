@@ -209,7 +209,7 @@ const Answer = ({ user, storeUser }) => {
         <div className={classes.pagination}>
                   <button onClick={handlePreviousPage} disabled={currentPage === 1} 
                   className={classes.pagination__button}>
-                    <IoChevronBackCircleSharp size={25}/>
+                    <IoChevronBackCircleSharp size={30}/>
                   </button>
                   <span>
                   {currentPage} of {totalPages}
@@ -219,12 +219,12 @@ const Answer = ({ user, storeUser }) => {
                     disabled={currentPage === totalPages}
                     className={classes.pagination__button}
                   >
-                    <IoChevronForwardCircleSharp size={25}/>
+                    <IoChevronForwardCircleSharp size={30}/>
                   </button>
                 </div>
         <form onSubmit={postAnswer} className={classes.post__answer}>
           <div className={classes.text__area}>
-            <textarea rows="4" ref={answerDom} placeholder="Your Answer ..." />
+            <textarea rows="2" ref={answerDom} placeholder="Your Answer ..." />
           </div>
 
           <button type="submit">Post Answer</button>
