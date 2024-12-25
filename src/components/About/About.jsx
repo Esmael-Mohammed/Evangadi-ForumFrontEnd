@@ -28,7 +28,9 @@ const About = ({ signup }) => {
             network here.
           </p>
           <p></p>
-          <button>How it works</button>
+          <a href="https://www.evangadi.com/" target="_blank">
+             <button>How it works</button>
+            </a>
         </div>
       </div>
     </div>

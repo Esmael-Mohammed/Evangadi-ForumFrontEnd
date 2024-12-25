@@ -143,7 +143,7 @@ const Home = ({ user, storeUser }) => {
         <div className={classes.pagination}>
           <button onClick={handlePreviousPage} disabled={currentPage === 1} 
           className={classes.pagination__button}>
-            <IoChevronBackCircleSharp size={25}/>
+            <IoChevronBackCircleSharp size={30}/>
           </button>
           <span>
           {currentPage} of {totalPages}
@@ -153,7 +153,7 @@ const Home = ({ user, storeUser }) => {
             disabled={currentPage === totalPages}
             className={classes.pagination__button}
           >
-            <IoChevronForwardCircleSharp size={25}/>
+            <IoChevronForwardCircleSharp size={30}/>
           </button>
         </div>
       </div>
